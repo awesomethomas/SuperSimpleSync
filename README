@@ -1,2 +1,9 @@
 Super Simple Sync is a simple sync program that keeps a directory in sync with a central server using a web service.
 Currently support is limited, but hopefully that will change soon.
+
+Oct 30, 2012:
+Added GUI to client; allows user to select directory and then sync with server by pressing button.
+
+Oct 31, 2012:
+Created binding for txtOutput to user setting and made it persistent so when user selects directory,
+this will be saved on client computer.
