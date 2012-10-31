@@ -20,6 +20,7 @@ namespace SuperSimpleSync
             Program p = new Program();
             try
             {
+                //I'll add the background updating code.
                 p.SyncWithServer();
             }
             catch (Exception ex)
