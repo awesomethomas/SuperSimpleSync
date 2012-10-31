@@ -6,14 +6,15 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.IO;
 
 namespace SuperSimpleSync
 {
     public partial class GUI : Form
     {
+        //UserSetting user;
         public GUI()
         {
-
             InitializeComponent();
         }
 
@@ -40,6 +41,11 @@ namespace SuperSimpleSync
                 txtOutput.AppendText(ds.ToString() + ": There was an error syncing: " + ex.Message + "\n");
             }
             txtOutput.AppendText(ds.ToString() + ": Sync successful!\n");
+        }
+
+        private void GUI_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Properties.Settings.Default.Save();
         }
     }
 }

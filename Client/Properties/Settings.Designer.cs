@@ -32,5 +32,17 @@ namespace SuperSimpleSync.Properties {
                 return ((string)(this["SuperSimpleSync_SyncServer_Sync"]));
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("C:\\temp\\")]
+        public string ClientDirectory {
+            get {
+                return ((string)(this["ClientDirectory"]));
+            }
+            set {
+                this["ClientDirectory"] = value;
+            }
+        }
     }
 }

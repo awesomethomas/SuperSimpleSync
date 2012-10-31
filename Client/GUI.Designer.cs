@@ -47,10 +47,12 @@
             // 
             // txtFolderClient
             // 
+            this.txtFolderClient.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::SuperSimpleSync.Properties.Settings.Default, "ClientDirectory", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.txtFolderClient.Location = new System.Drawing.Point(16, 42);
             this.txtFolderClient.Name = "txtFolderClient";
             this.txtFolderClient.Size = new System.Drawing.Size(238, 20);
             this.txtFolderClient.TabIndex = 1;
+            this.txtFolderClient.Text = global::SuperSimpleSync.Properties.Settings.Default.ClientDirectory;
             // 
             // btnBrowse
             // 
@@ -92,6 +94,7 @@
             this.Controls.Add(this.label1);
             this.Name = "GUI";
             this.Text = "SuperSimpleSync Client";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.GUI_FormClosing);
             this.ResumeLayout(false);
             this.PerformLayout();
 
