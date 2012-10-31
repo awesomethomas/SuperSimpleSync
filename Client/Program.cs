@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Xml.Serialization;
 using System.IO;
+using System.Drawing;
+using System.Windows.Forms;
 using Common;
 using System.Threading;
 
@@ -12,30 +14,30 @@ namespace SuperSimpleSync
     class Program
     {
         // Darren Kent - Version History
-        //private DirectoryInfo LocalStorage = new System.IO.DirectoryInfo(@"C:\Sync\testDir");
         private DirectoryInfo LocalStorage = new System.IO.DirectoryInfo(@"U:\temp\TestSyncDir");
         private Guid accountId = Guid.Parse("{FC948776-0FA5-4ABC-A2F3-E8AC8005DFCA}");
         SyncServer.Sync _sync = new SyncServer.Sync();
 
-        static void Main(string[] args)
+        [STAThreadAttribute]
+        static void Main()
         {
-            Program p = new Program();
-            try
-            {
-                while (true)//repeat this $#|+ indefinitely
-                {
-                    p.SyncWithServer();
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("There was an error syncing: " + ex.Message);
-                Environment.Exit(1);
-            }
-            Environment.Exit(0);
+            Application.EnableVisualStyles();
+
+            Application.Run(new GUI());
         }
 
-        private void SyncWithServer()
+        public void SetLocalStorage(String tmp)
+        {
+            DirectoryInfo newDir = new System.IO.DirectoryInfo(tmp);
+            LocalStorage = newDir;
+        }
+
+        public DirectoryInfo GetLS()
+        {
+            return LocalStorage;
+        }
+
+        public void SyncWithServer()
         {
             _sync.Timeout = 600000;
             SyncDir local = Util.AuditTree(LocalStorage);
@@ -67,7 +69,7 @@ namespace SuperSimpleSync
             }
         }
 
-        
+
         private void ResolveDifferencesWithLocal(SyncDir diff, DirectoryInfo dir)
         {
             if (diff.Files != null)
