@@ -12,7 +12,7 @@ namespace SuperSimpleSync
     class Program
     {
         // Darren Kent - Version History
-        private DirectoryInfo LocalStorage = new System.IO.DirectoryInfo(@"C:\temp\TestSyncDir");
+        private DirectoryInfo LocalStorage = new System.IO.DirectoryInfo(@"U:\temp\TestSyncDir");
         private Guid accountId = Guid.Parse("{FC948776-0FA5-4ABC-A2F3-E8AC8005DFCA}");
         SyncServer.Sync _sync = new SyncServer.Sync();
 
