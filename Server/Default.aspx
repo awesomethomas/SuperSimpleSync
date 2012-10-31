@@ -3,5 +3,6 @@
 <html>
     <body>
         Super Simple Sync Server
+        <h1>New Comment</h1>
     </body>
 </html>
