@@ -33,10 +33,7 @@ namespace SuperSimpleSync
             p.SetLocalStorage(txtFolderClient.Text);
             try
             {
-                //while (true)//repeat this $#|+ indefinitely
-                //{
                 p.SyncWithServer();
-                //}
             }
             catch (Exception ex)
             {
