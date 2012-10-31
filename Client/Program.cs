@@ -21,8 +21,10 @@ namespace SuperSimpleSync
             Program p = new Program();
             try
             {
-                //I'll add the background updating code.
-                p.SyncWithServer();
+                while (true)//repeat this $#|+ indefinitely
+                {
+                    p.SyncWithServer();
+                }
             }
             catch (Exception ex)
             {
