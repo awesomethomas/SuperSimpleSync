@@ -78,7 +78,6 @@
       <DependentUpon>Sync.asmx</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="TextLog.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
