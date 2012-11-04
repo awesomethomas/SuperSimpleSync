@@ -4,7 +4,6 @@ using System.Linq;
 using System.Web;
 using System.Web.Services;
 using System.IO;
-using System.Text;
 using Common;
 
 namespace Server
@@ -19,8 +18,8 @@ namespace Server
     // [System.Web.Script.Services.ScriptService]
     public class Sync : System.Web.Services.WebService
     {
-        private DirectoryInfo StorageDir = new DirectoryInfo(@"C:\Sync\TestStorage");
-        //private DirectoryInfo StorageDir = new DirectoryInfo(@"U:\temp\TestServerStorage");
+        //private DirectoryInfo StorageDir = new DirectoryInfo(@"C:\Sync\TestStorage");
+        private DirectoryInfo StorageDir = new DirectoryInfo(@"U:\temp\TestServerStorage");
 
         public DirectoryInfo GetAccountStorageDir(Guid accountId)
         {
@@ -83,23 +82,5 @@ namespace Server
             return null;
         }
 
-        [WebMethod]
-        public void appendLine(Guid accountId,string line)
-        {
-            string filename = DateTime.Today.ToString("yyMMdd");
-            string path = StorageDir.FullName + Path.DirectorySeparatorChar + accountId.ToString() + Path.DirectorySeparatorChar + "Logs";
-            DirectoryInfo sub = new DirectoryInfo(path);
-            if (!sub.Exists)
-                sub.Create();
-            path = path + Path.DirectorySeparatorChar;
-            if(!File.Exists(path+filename+".txt"))
-            {
-                File.AppendAllText(path+filename+".txt","Transfer       FileName        Date Created        Date Modified       Path"+System.Environment.NewLine);
-                File.AppendAllText(path+filename+".txt","==========================================================================="+System.Environment.NewLine);
-            }
-            File.AppendAllText(path+filename+".txt",line+System.Environment.NewLine);
-        }
-
     }
-
 }

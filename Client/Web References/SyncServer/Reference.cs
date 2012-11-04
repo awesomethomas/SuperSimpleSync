@@ -122,14 +122,6 @@ namespace SuperSimpleSync.SyncServer {
                         path,
                         buffer});
         }
-
-        /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/appendLine", RequestNamespace = "http://tempuri.org/", ResponseNamespace = "http://tempuri.org/", Use = System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle = System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public void appendLine(System.Guid accountId,string line)
-        {
-            this.Invoke("appendLine", new object[] {
-                        accountId,line});
-        }
         
         /// <remarks/>
         public void SendFileToServerAsync(System.Guid accountId, string path, byte[] buffer) {
