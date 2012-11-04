@@ -55,6 +55,7 @@ namespace SuperSimpleSync
                 {
                     byte[] buffer = File.ReadAllBytes(dir.FullName + Path.DirectorySeparatorChar + f.Name);
                     _sync.SendFileToServer(accountId, f.BuildPath(), buffer);
+                    _sync.appendLine(accountId, "Server->Local: " + f.Name + "    " + f.DateCreated + "    " + f.DateModified + "    " + f.BuildPath());
                 }
             }
             if (diff.Directories != null)
@@ -78,6 +79,7 @@ namespace SuperSimpleSync
                 {
                     byte[] buffer = _sync.GetFileFromServer(accountId, f.BuildPath());
                     File.WriteAllBytes(dir.FullName + Path.DirectorySeparatorChar + f.Name, buffer);
+                    _sync.appendLine(accountId, "Local->Server: " + f.Name + "    "+f.DateCreated + "    " + f.DateModified + "    " + f.BuildPath());
                 }
             }
             if (diff.Directories != null)
