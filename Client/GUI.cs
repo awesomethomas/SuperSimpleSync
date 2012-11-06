@@ -47,5 +47,32 @@ namespace SuperSimpleSync
         {
             Properties.Settings.Default.Save();
         }
+
+        private void notifyIcon1_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            this.WindowState = FormWindowState.Normal;
+            this.Show();
+        }
+
+        private void stmExit_Click(object sender, MouseEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void stmMax_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Normal;
+            this.Show();
+        }
+
+        private void GUI_Resize(object sender, EventArgs e)
+        {
+            if (FormWindowState.Minimized == this.WindowState)
+            {
+                this.WindowState = FormWindowState.Normal;
+                this.Hide();
+            }
+        }
+
     }
 }

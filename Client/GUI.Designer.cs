@@ -28,12 +28,19 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GUI));
             this.label1 = new System.Windows.Forms.Label();
             this.folderBrowser = new System.Windows.Forms.FolderBrowserDialog();
             this.txtFolderClient = new System.Windows.Forms.TextBox();
             this.btnBrowse = new System.Windows.Forms.Button();
             this.btnSync = new System.Windows.Forms.Button();
             this.txtOutput = new System.Windows.Forms.TextBox();
+            this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
+            this.systemTrayMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.stmMax = new System.Windows.Forms.ToolStripMenuItem();
+            this.stmExit = new System.Windows.Forms.ToolStripMenuItem();
+            this.systemTrayMenu.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -82,6 +89,35 @@
             this.txtOutput.Size = new System.Drawing.Size(321, 72);
             this.txtOutput.TabIndex = 4;
             // 
+            // notifyIcon1
+            // 
+            this.notifyIcon1.ContextMenuStrip = this.systemTrayMenu;
+            this.notifyIcon1.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon1.Icon")));
+            this.notifyIcon1.Text = "systemTray";
+            this.notifyIcon1.Visible = true;
+            this.notifyIcon1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.notifyIcon1_MouseDoubleClick);
+            // 
+            // systemTrayMenu
+            // 
+            this.systemTrayMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.stmMax,
+            this.stmExit});
+            this.systemTrayMenu.Name = "systemTrayMenu";
+            this.systemTrayMenu.Size = new System.Drawing.Size(125, 48);
+            // 
+            // stmMax
+            // 
+            this.stmMax.Name = "stmMax";
+            this.stmMax.Size = new System.Drawing.Size(124, 22);
+            this.stmMax.Text = "Maximize";
+            this.stmMax.Click += new System.EventHandler(this.stmMax_Click);
+            // 
+            // stmExit
+            // 
+            this.stmExit.Name = "stmExit";
+            this.stmExit.Size = new System.Drawing.Size(124, 22);
+            this.stmExit.Text = "Exit";
+            // 
             // GUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -95,6 +131,8 @@
             this.Name = "GUI";
             this.Text = "SuperSimpleSync Client";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.GUI_FormClosing);
+            this.Resize += new System.EventHandler(this.GUI_Resize);
+            this.systemTrayMenu.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -108,5 +146,9 @@
         private System.Windows.Forms.Button btnBrowse;
         private System.Windows.Forms.Button btnSync;
         private System.Windows.Forms.TextBox txtOutput;
+        private System.Windows.Forms.NotifyIcon notifyIcon1;
+        private System.Windows.Forms.ContextMenuStrip systemTrayMenu;
+        private System.Windows.Forms.ToolStripMenuItem stmMax;
+        private System.Windows.Forms.ToolStripMenuItem stmExit;
     }
 }
