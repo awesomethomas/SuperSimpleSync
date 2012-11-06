@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.IO;
 
 namespace Server
 {
@@ -13,6 +14,7 @@ namespace Server
         private AccountManager() { accounts = new List<Guid>(); }
 
         private List<Guid> accounts;
+        private DirectoryInfo StorageDir = new DirectoryInfo(@"U:\temp\TestServerStorage");
 
         public static AccountManager Instance
         {
@@ -35,6 +37,10 @@ namespace Server
         public List<Guid> GetAccounts()
         {
             return accounts;
+        }
+        public DirectoryInfo GetStorageDir()
+        {
+            return StorageDir;
         }
     }
 }

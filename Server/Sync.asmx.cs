@@ -16,18 +16,17 @@ namespace Server
     [WebServiceBinding(ConformsTo = WsiProfiles.BasicProfile1_1)]
     [System.ComponentModel.ToolboxItem(false)]
     // To allow this Web Service to be called from script, using ASP.NET AJAX, uncomment the following line. 
-    // [System.Web.Script.Services.ScriptService]
+    //[System.Web.Script.Services.ScriptService]
     public class Sync : System.Web.Services.WebService
     {
-        private DirectoryInfo StorageDir = new DirectoryInfo(@"C:\Sync\TestStorage");
-        //private DirectoryInfo StorageDir = new DirectoryInfo(@"U:\temp\TestServerStorage");
-
         private AccountManager actMgr = AccountManager.Instance;
+        //private DirectoryInfo StorageDir = new DirectoryInfo(@"C:\Sync\TestStorage");
+        //private DirectoryInfo StorageDir = new DirectoryInfo(@"U:\temp\TestServerStorage");
 
         public DirectoryInfo GetAccountStorageDir(Guid accountId)
         {
             actMgr.InsertAccount(accountId);
-            DirectoryInfo storageDir = new DirectoryInfo(StorageDir.FullName + Path.DirectorySeparatorChar + accountId.ToString());
+            DirectoryInfo storageDir = new DirectoryInfo(actMgr.GetStorageDir().FullName + Path.DirectorySeparatorChar + accountId.ToString());
             if (!storageDir.Exists)
                 storageDir.Create();
             storageDir.Refresh();
@@ -95,7 +94,7 @@ namespace Server
         {
             actMgr.InsertAccount(accountId);
             string filename = DateTime.Today.ToString("yyMMdd");
-            string path = StorageDir.FullName + Path.DirectorySeparatorChar + accountId.ToString() + Path.DirectorySeparatorChar + "Logs";
+            string path = actMgr.GetStorageDir().FullName + Path.DirectorySeparatorChar + accountId.ToString() + Path.DirectorySeparatorChar + "Logs";
             DirectoryInfo sub = new DirectoryInfo(path);
             if (!sub.Exists)
                 sub.Create();
