@@ -28,7 +28,8 @@ namespace Server
 
         public void InsertAccount(Guid newAct)
         {
-            accounts.Add(newAct);
+            if(!accounts.Contains(newAct))
+                accounts.Add(newAct);
         }
 
         public List<Guid> GetAccounts()

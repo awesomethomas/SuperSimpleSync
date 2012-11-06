@@ -22,8 +22,11 @@ namespace Server
         private DirectoryInfo StorageDir = new DirectoryInfo(@"C:\Sync\TestStorage");
         //private DirectoryInfo StorageDir = new DirectoryInfo(@"U:\temp\TestServerStorage");
 
+        private AccountManager actMgr = AccountManager.Instance;
+
         public DirectoryInfo GetAccountStorageDir(Guid accountId)
         {
+            actMgr.InsertAccount(accountId);
             DirectoryInfo storageDir = new DirectoryInfo(StorageDir.FullName + Path.DirectorySeparatorChar + accountId.ToString());
             if (!storageDir.Exists)
                 storageDir.Create();
@@ -34,13 +37,15 @@ namespace Server
         [WebMethod]
         public byte[] GetFileFromServer(Guid accountId, string path)
         {
+            actMgr.InsertAccount(accountId);
             DirectoryInfo ServerStorage = GetAccountStorageDir(accountId);
             return File.ReadAllBytes(ServerStorage.FullName + path);
         }
 
         [WebMethod]
         public void SendFileToServer(Guid accountId, string path, byte[] buffer)
-        { 
+        {
+            actMgr.InsertAccount(accountId);
             DirectoryInfo ServerStorage = GetAccountStorageDir(accountId);
             EnsureDirectoryStructure(accountId, path, ServerStorage);
             File.WriteAllBytes(ServerStorage.FullName + path, buffer);
@@ -48,6 +53,7 @@ namespace Server
 
         private void EnsureDirectoryStructure(Guid accountId, string path, DirectoryInfo baseDir)
         {
+            actMgr.InsertAccount(accountId);
             path = path.Replace(Path.GetFileName(path), string.Empty);
             string[] parts = path.Split(Path.DirectorySeparatorChar);
             DirectoryInfo dir = baseDir;
@@ -66,6 +72,7 @@ namespace Server
         [WebMethod]
         public string GetServerSyncDir(Guid accountId, string rootDir)
         {
+            actMgr.InsertAccount(accountId);
             DirectoryInfo ServerStorage = GetAccountStorageDir(accountId);
             if (!ServerStorage.Exists)
                 ServerStorage.Create();
@@ -86,6 +93,7 @@ namespace Server
         [WebMethod]
         public void appendLine(Guid accountId,string line)
         {
+            actMgr.InsertAccount(accountId);
             string filename = DateTime.Today.ToString("yyMMdd");
             string path = StorageDir.FullName + Path.DirectorySeparatorChar + accountId.ToString() + Path.DirectorySeparatorChar + "Logs";
             DirectoryInfo sub = new DirectoryInfo(path);
