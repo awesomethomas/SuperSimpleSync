@@ -42,6 +42,14 @@ namespace Server
         {
             return StorageDir;
         }
+        public DirectoryInfo GetStorageDir(Guid newAct)
+        {
+            DirectoryInfo storageDir = new DirectoryInfo(GetStorageDir().FullName + Path.DirectorySeparatorChar + newAct.ToString());
+            if (!storageDir.Exists)
+                storageDir.Create();
+            storageDir.Refresh();
+            return storageDir;
+        }
 
         
     }
