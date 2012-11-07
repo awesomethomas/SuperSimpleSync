@@ -13,6 +13,10 @@ namespace Server
         private AccountManager actMgr = AccountManager.Instance;
         protected void Page_Load(object sender, EventArgs e)
         {
+            DirectoryInfo dirInfo = actMgr.GetStorageDir();
+            DirectoryInfo[] fileInfo = dirInfo.GetDirectories("*.*", SearchOption.TopDirectoryOnly);
+            AccountList.DataSource = fileInfo;
+            AccountList.DataBind();
             if (!IsPostBack)
             {
                 GetFilesAndFolders();
@@ -25,6 +29,11 @@ namespace Server
             FileInfo[] fileInfo = dirInfo.GetFiles("*.*", SearchOption.AllDirectories);
             GridView1.DataSource = fileInfo;
             GridView1.DataBind();
+        }
+
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 
