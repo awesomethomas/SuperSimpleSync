@@ -53,6 +53,7 @@
   <ItemGroup>
     <Content Include="Default.aspx" />
     <Content Include="Global.asax" />
+    <Content Include="StyleSheet1.css" />
     <Content Include="Sync.asmx" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">

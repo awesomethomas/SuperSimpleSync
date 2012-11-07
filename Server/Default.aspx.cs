@@ -26,7 +26,9 @@ namespace Server
         }
         public void GetFilesAndFolders()
         {
-            DirectoryInfo dirInfo = actMgr.GetStorageDir();
+            Label1.Text = AccountList.SelectedItem.Text;
+            Guid accountId = Guid.Parse(AccountList.SelectedItem.Text);
+            DirectoryInfo dirInfo = actMgr.GetStorageDir(accountId);
             FileInfo[] fileInfo = dirInfo.GetFiles("*.*", SearchOption.AllDirectories);
             GridView1.DataSource = fileInfo;
             GridView1.DataBind();

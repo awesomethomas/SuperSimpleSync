@@ -51,6 +51,9 @@ namespace Server
             return storageDir;
         }
 
-        
+        public Guid GetFirstAccount()
+        {
+            return accounts[0];
+        }
     }
 }

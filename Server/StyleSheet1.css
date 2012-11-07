@@ -1,0 +1,45 @@
+﻿body 
+{
+    background-color:#CCCCCC;
+}
+
+h1
+{
+    font-family:Kozuka Gothic Pro M;
+    text-align:center;
+    text-decoration:underline;
+}
+
+p
+{
+    font-family:Kozuka Gothic Pro M;
+    text-align:center;
+}
+
+h2
+{
+    text-align:center;
+}
+
+mGrid
+{
+    width: 100%;
+    background-color: #fff;
+    margin: 5px 0 10px 0;
+    border: solid 5px #525252;
+    border-collapse:collapse;
+
+}
+
+.mGrid td { 
+    padding: 2px; 
+    border: solid 1px #c1c1c1; 
+    color: #000000; 
+}
+.mGrid th { 
+    padding: 4px 2px; 
+    color: #fff; 
+    background: #424242 repeat-x top; 
+    border-left: solid 1px #525252; 
+    font-size: 0.9em; 
+}
